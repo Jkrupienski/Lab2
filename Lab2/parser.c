@@ -61,6 +61,7 @@ int main()
 				
 				//fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[1]);
 				fprintf(fp2, "%s %s %s ", tokenizedLine[0], tokenizedLine[1], tokenizedLine[3]);
+				
 			}
 			else if ((strcmp(tokenizedLine[2], "dispatched") == 0))				//Process is dispatched
 			{
@@ -87,15 +88,16 @@ int main()
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[2]);
 			}
 			
+			
 		}
-		fprintf(fp2, "\n");
 		
+
+		fprintf(fp2, "\n");
 		fprintf(fp2, "disk queue: \n");
 		fprintf(fp2, "printer queue: \n");
 		fprintf(fp2, "keyboard queue: \n");
-
-
 		fprintf(fp2, "\n");
+		
 	}
 
 	printf("Parsing complete\n\n");
