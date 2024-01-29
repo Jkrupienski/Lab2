@@ -1,0 +1,61 @@
+P1 Ready P3 Running P5 Ready P7 Ready P8 Ready end
+P3 requests disk P7 dispatched 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P7 expires P8 dispatched 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P8 requests keyboard P5 dispatched 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P5 requests disk P7 dispatched 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P7 requests printer P1 dispatched 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P7 out 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P5 interrupt 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P3 interrupt 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P1 terminated 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P7 interrupt 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P7 in 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
+P8 interrupt 
+disk queue: 
+printer queue: 
+keyboard queue: 
+
