@@ -4,58 +4,118 @@ disk queue:
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P7 expires P8 dispatched 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
 P8 requests keyboard P5 dispatched 
 disk queue: 
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P5 requests disk P7 dispatched 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
 P7 requests printer P1 dispatched 
 disk queue: 
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P7 out 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
 P5 interrupt 
 disk queue: 
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P3 interrupt 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
 P1 terminated 
 disk queue: 
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P7 interrupt 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
 P7 in 
 disk queue: 
 printer queue: 
 keyboard queue: 
 
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
+
 P8 interrupt 
 disk queue: 
 printer queue: 
 keyboard queue: 
+
+
+disk queue: (null)
+printer queue: (null)
+keyboard queue: (null)
 
