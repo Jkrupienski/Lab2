@@ -40,6 +40,8 @@ int main()
 	while (fgets(str, sizeof(str), fp1) != NULL)
 	{
 		lineP = 0;
+		
+		
 		rch = strtok(str, ":;.");					// use strtok to break up the line by : or . or ; This would separate each line into the different events
 		while (rch != NULL)
 		{
@@ -48,19 +50,21 @@ int main()
 			rch = strtok(NULL, ":;.");				//needed for strtok to continue in the while loop
 		} 
 			
-
+		fprintf(fp2, "%s: ", LineInFile[0]); // Writes at time X to file
+		printf("%s: ", LineInFile[0]);	// at time debugging line
 		//for each event (e.g. Time slice for P7 expires) pull out process number and event
 		for (i = 1; i < lineP - 1; i++)
 		{
 			lineQ = 0;
 			sch = strtok(LineInFile[i], " ");
+			
 			while (sch != NULL)
 			{
 				strcpy(tokenizedLine[lineQ], sch);		//use strtok to break up each line into separate words and put the words in the array of strings
 				lineQ++;								//count number of valid elements
 				sch = strtok(NULL, " ");
 			}
-
+			
 			//tokenizedLine has the event separated by spaces (e.g. Time slice for P7 expires)
 			if (strcmp(tokenizedLine[1], "requests") == 0)						//Process requests an I/O device
 			{

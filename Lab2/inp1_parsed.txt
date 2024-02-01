@@ -1,60 +1,60 @@
 P1 Ready P3 Running P5 Ready P7 Ready P8 Ready end
-P3 requests disk P7 dispatched 
+At time 5: P3 requests disk P7 dispatched 
 disk queue: P7
 printer queue: (null)
 keyboard queue: (null)
 
-P7 expires P8 dispatched 
+At time 15: P7 expires P8 dispatched 
 disk queue: P8
 printer queue: (null)
 keyboard queue: (null)
 
-P8 requests keyboard P5 dispatched 
+At time 18: P8 requests keyboard P5 dispatched 
 disk queue: P5
 printer queue: (null)
 keyboard queue: P5
 
-P5 requests disk P7 dispatched 
+At time 20: P5 requests disk P7 dispatched 
 disk queue: P7
 printer queue: (null)
 keyboard queue: P7
 
-P7 requests printer P1 dispatched 
+At time 24: P7 requests printer P1 dispatched 
 disk queue: P1
 printer queue: P1
 keyboard queue: P1
 
-P7 out 
+At time 28: P7 out 
 disk queue: P7
 printer queue: P7
 keyboard queue: P7
 
-P5 interrupt 
+At time 33: P5 interrupt 
 disk queue: An
 printer queue: An
 keyboard queue: An
 
-P3 interrupt 
+At time 36: P3 interrupt 
 disk queue: An
 printer queue: An
 keyboard queue: An
 
-P1 terminated 
+At time 38: P1 terminated 
 disk queue: P1
 printer queue: P1
 keyboard queue: P1
 
-P7 interrupt 
+At time 40: P7 interrupt 
 disk queue: An
 printer queue: An
 keyboard queue: An
 
-P7 in 
+At time 44: P7 in 
 disk queue: P7
 printer queue: P7
 keyboard queue: P7
 
-P8 interrupt 
+At time 48: P8 interrupt 
 disk queue: An
 printer queue: An
 keyboard queue: An
