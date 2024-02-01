@@ -5,16 +5,14 @@
 #pragma warning(disable : 4996)
 
 struct queue {
-	char disk[10];
-	char printer[10];
-	char keyboard[10];
+	char* request;
 };
 
 struct queue queues[2];
 
 int main()
 {
-	int i, d, p, k;
+	int i;
 	char* rch;
 	char str[200];
 	char LineInFile[40][300];
@@ -30,9 +28,6 @@ int main()
 
 	lineP = 0;
 	i = 0;
-	d = 0;
-	p = 0;
-	k = 0;
 
 	printf("Started parsing...\n");
 
@@ -72,17 +67,20 @@ int main()
 				
 				//fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[1]);
 				fprintf(fp2, "%s %s %s ", tokenizedLine[0], tokenizedLine[1], tokenizedLine[3]);
-				if (strcmp(tokenizedLine[1], "disk") == 0) {
-					queues[0].disk[d] = tokenizedLine[0];
-					d++;
+				if (strcmp(tokenizedLine[3], "disk") == 0) {
+					printf("%s\n", tokenizedLine[0]);
+					queues[0].request = tokenizedLine[0];
+					printf("%s\n", queues[0].request);
 				}
-				else if (strcmp(tokenizedLine[1], "printer") == 0) {
-					queues[1].printer[p] = tokenizedLine[0];
-					p++;
+				else if (strcmp(tokenizedLine[3], "printer") == 0) {
+					printf("%s\n", tokenizedLine[0]);
+					queues[1].request = tokenizedLine[0];
+					printf("%s\n", queues[1].request);
 				}
-				else if (strcmp(tokenizedLine[1], "keyboard") == 0) {
-					queues[2].keyboard[k] = tokenizedLine[0];
-					k++;
+				else if (strcmp(tokenizedLine[3], "keyboard") == 0) {
+					printf("%s\n", tokenizedLine[0]);
+					queues[2].request = tokenizedLine[0];
+					printf("%s\n", queues[2].request);
 				}
 				
 			}
@@ -113,18 +111,13 @@ int main()
 			
 			
 		}
-		
+
+
 
 		fprintf(fp2, "\n");
-		fprintf(fp2, "disk queue: \n");
-		fprintf(fp2, "printer queue: \n");
-		fprintf(fp2, "keyboard queue: \n");
-		fprintf(fp2, "\n");
-
-		fprintf(fp2, "\n");
-		fprintf(fp2, "disk queue: %s\n", queues[0].disk[d]);
-		fprintf(fp2, "printer queue: %s\n", queues[1].printer[p]);
-		fprintf(fp2, "keyboard queue: %s\n", queues[2].keyboard[k]);
+		fprintf(fp2, "disk queue: %s\n", queues[0].request);
+		fprintf(fp2, "printer queue: %s\n", queues[1].request);
+		fprintf(fp2, "keyboard queue: %s\n", queues[2].request);
 		fprintf(fp2, "\n");
 		
 	}
