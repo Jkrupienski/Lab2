@@ -5,14 +5,21 @@
 #pragma warning(disable : 4996)
 
 struct queue {
-	char *request;
+	char* request;
 };
 
 struct queue queues[3];
 
+struct process {
+	char* name;
+	char* state;
+};
+
+struct process processes[20];
+
 int main()
 {
-	int i;
+	int i, processCount;
 	char* rch;
 	char str[200];
 	char LineInFile[40][300];
@@ -28,6 +35,7 @@ int main()
 
 	lineP = 0;
 	i = 0;
+	processCount = 0;
 
 	queues[0].request = "";
 	queues[1].request = "";
@@ -37,9 +45,27 @@ int main()
 	printf("Started parsing...\n");
 
 	//copy first line of the original file to the new filefile
-	if (fgets(str, sizeof(str), fp1) != NULL)
-		fprintf(fp2, "%s", str);
-	
+	if (fgets(str, sizeof(str), fp1) != NULL) {
+		char* pch = strtok(str, " ");
+		while (pch != NULL && processCount < 20) {
+			if (strcmp(pch, "end") != 0) {
+				processes[processCount].name = strdup(pch);
+				pch = strtok(NULL, " ");
+				processes[processCount].state = strdup(pch);
+				pch = strtok(NULL, " ");
+				processCount++;
+			}
+			else {
+				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < processCount; i++) {
+		fprintf(fp2, "%s %s ", processes[i].name, processes[i].state);
+	}
+	fprintf(fp2, "\n");
+
 	//parse each remaining line into Process event
 	//while loop with fgets reads each line
 	while (fgets(str, sizeof(str), fp1) != NULL)
@@ -56,7 +82,7 @@ int main()
 		} 
 			
 		fprintf(fp2, "%s: ", LineInFile[0]); // Writes at time X to file
-		printf("%s: \n", LineInFile[0]);	// at time debugging line
+		//printf("%s: \n", LineInFile[0]);	// at time debugging line
 		//for each event (e.g. Time slice for P7 expires) pull out process number and event
 		for (i = 1; i < lineP - 1; i++)
 		{
@@ -73,6 +99,13 @@ int main()
 			//tokenizedLine has the event separated by spaces (e.g. Time slice for P7 expires)
 			if (strcmp(tokenizedLine[1], "requests") == 0)						//Process requests an I/O device
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Blocked";
+						break;
+					}
+				}
+
 				//fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[1]);
 				fprintf(fp2, "%s %s %s ", tokenizedLine[0], tokenizedLine[1], tokenizedLine[3]);
 
@@ -98,22 +131,57 @@ int main()
 			}
 			else if ((strcmp(tokenizedLine[2], "dispatched") == 0))				//Process is dispatched
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Running";
+						break;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[2]);
 			}
 			else if (strcmp(tokenizedLine[0], "Time") == 0)						//Process has timed off
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[3]) == 0) {
+						processes[j].state = "Ready";
+						break;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[3], tokenizedLine[4]);
 			}
 			else if (strcmp(tokenizedLine[3], "out") == 0)						//Process is swapped out
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Ready";
+						break;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[3]);
 			}
 			else if (strcmp(tokenizedLine[3], "in") == 0)						//Process is swapped in
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Ready";
+						break;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[3]);
 			}
 			else if (strcmp(tokenizedLine[1], "interrupt") == 0)				//An interrupt has occured
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Ready";
+						break;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[4], tokenizedLine[1]);
 			}
 			else																//Process has been terminated
@@ -122,6 +190,11 @@ int main()
 			}
 			
 			
+		}
+		
+		fprintf(fp2, "\n");
+		for (int i = 0; i < processCount; i++) {
+			fprintf(fp2, "%s %s ", processes[i].name, processes[i].state);
 		}
 
 		fprintf(fp2, "\n");
