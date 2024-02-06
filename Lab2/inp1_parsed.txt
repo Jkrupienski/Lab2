@@ -1,22 +1,22 @@
 P1 Ready P3 Running P5 Ready P7 Ready P8 Ready end
 At time 5: P3 requests disk P7 dispatched 
 disk queue: P3
-printer queue: (null)
-keyboard queue: (null)
+printer queue: 
+keyboard queue: 
 
 At time 15: P7 expires P8 dispatched 
 disk queue: P3
-printer queue: (null)
-keyboard queue: (null)
+printer queue: 
+keyboard queue: 
 
 At time 18: P8 requests keyboard P5 dispatched 
 disk queue: P3
-printer queue: (null)
+printer queue: 
 keyboard queue: P8
 
 At time 20: P5 requests disk P7 dispatched 
 disk queue: P5
-printer queue: (null)
+printer queue: 
 keyboard queue: P8
 
 At time 24: P7 requests printer P1 dispatched 

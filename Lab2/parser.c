@@ -29,6 +29,11 @@ int main()
 	lineP = 0;
 	i = 0;
 
+	queues[0].request = "";
+	queues[1].request = "";
+	queues[2].request = "";
+
+
 	printf("Started parsing...\n");
 
 	//copy first line of the original file to the new filefile
