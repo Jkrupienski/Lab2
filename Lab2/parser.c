@@ -46,25 +46,25 @@ int main()
 
 	//copy first line of the original file to the new filefile
 	if (fgets(str, sizeof(str), fp1) != NULL) {
+		char* endPtr = strstr(str, "end");
+		if (endPtr != NULL) {
+			*endPtr = '\0';
+		}
+		
 		char* pch = strtok(str, " ");
 		while (pch != NULL && processCount < 20) {
-			if (strcmp(pch, "end") != 0) {
-				processes[processCount].name = strdup(pch);
-				pch = strtok(NULL, " ");
-				processes[processCount].state = strdup(pch);
-				pch = strtok(NULL, " ");
-				processCount++;
-			}
-			else {
-				break;
-			}
+			processes[processCount].name = strdup(pch);
+			pch = strtok(NULL, " ");
+			processes[processCount].state = strdup(pch);
+			pch = strtok(NULL, " ");
+			processCount++;
 		}
 	}
 
 	for (int i = 0; i < processCount; i++) {
 		fprintf(fp2, "%s %s ", processes[i].name, processes[i].state);
 	}
-	fprintf(fp2, "\n");
+	fprintf(fp2, "\n\n");
 
 	//parse each remaining line into Process event
 	//while loop with fgets reads each line
