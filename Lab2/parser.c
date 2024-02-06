@@ -5,10 +5,10 @@
 #pragma warning(disable : 4996)
 
 struct queue {
-	char* request;
+	char *request;
 };
 
-struct queue queues[2];
+struct queue queues[3];
 
 int main()
 {
@@ -51,7 +51,7 @@ int main()
 		} 
 			
 		fprintf(fp2, "%s: ", LineInFile[0]); // Writes at time X to file
-		printf("%s: ", LineInFile[0]);	// at time debugging line
+		printf("%s: \n", LineInFile[0]);	// at time debugging line
 		//for each event (e.g. Time slice for P7 expires) pull out process number and event
 		for (i = 1; i < lineP - 1; i++)
 		{
@@ -68,23 +68,26 @@ int main()
 			//tokenizedLine has the event separated by spaces (e.g. Time slice for P7 expires)
 			if (strcmp(tokenizedLine[1], "requests") == 0)						//Process requests an I/O device
 			{
-				
 				//fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[1]);
 				fprintf(fp2, "%s %s %s ", tokenizedLine[0], tokenizedLine[1], tokenizedLine[3]);
+
 				if (strcmp(tokenizedLine[3], "disk") == 0) {
-					printf("%s\n", tokenizedLine[0]);
-					queues[0].request = tokenizedLine[0];
-					printf("%s\n", queues[0].request);
+					//printf("%s\n", tokenizedLine[0]);
+					queues[0].request = malloc(strlen(tokenizedLine[0]) + 1);
+					strcpy(queues[0].request, tokenizedLine[0]);
+					//printf("%s\n", queues[0].request);
 				}
 				else if (strcmp(tokenizedLine[3], "printer") == 0) {
-					printf("%s\n", tokenizedLine[0]);
-					queues[1].request = tokenizedLine[0];
-					printf("%s\n", queues[1].request);
+					//printf("%s\n", tokenizedLine[0]);
+					queues[1].request = malloc(strlen(tokenizedLine[0]) + 1);
+					strcpy(queues[1].request, tokenizedLine[0]);
+					//printf("%s\n", queues[1].request);
 				}
 				else if (strcmp(tokenizedLine[3], "keyboard") == 0) {
-					printf("%s\n", tokenizedLine[0]);
-					queues[2].request = tokenizedLine[0];
-					printf("%s\n", queues[2].request);
+					//printf("%s\n", tokenizedLine[0]);
+					queues[2].request = malloc(strlen(tokenizedLine[0]) + 1);
+					strcpy(queues[2].request, tokenizedLine[0]);
+					//printf("%s\n", queues[2].request);
 				}
 				
 			}
@@ -115,8 +118,6 @@ int main()
 			
 			
 		}
-
-
 
 		fprintf(fp2, "\n");
 		fprintf(fp2, "disk queue: %s\n", queues[0].request);
