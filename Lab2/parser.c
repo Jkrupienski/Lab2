@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include <stdbool.h>
 #pragma warning(disable : 4996)
 
 struct queue {
@@ -13,6 +14,7 @@ struct queue queues[3];
 struct process {
 	char* name;
 	char* state;
+	bool new;
 };
 
 struct process processes[20];
@@ -57,6 +59,7 @@ int main()
 			pch = strtok(NULL, " ");
 			processes[processCount].state = strdup(pch);
 			pch = strtok(NULL, " ");
+			processes[processCount].new = false;
 			processCount++;
 		}
 	}
@@ -102,6 +105,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
 						processes[j].state = "Blocked";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -134,6 +138,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
 						processes[j].state = "Running";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -145,6 +150,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[3]) == 0) {
 						processes[j].state = "Ready";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -156,6 +162,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
 						processes[j].state = "Ready";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -167,6 +174,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
 						processes[j].state = "Ready";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -178,6 +186,7 @@ int main()
 				for (int j = 0; j < processCount; j++) {
 					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
 						processes[j].state = "Ready";
+						processes[j].new = true;
 						break;
 					}
 				}
@@ -194,7 +203,8 @@ int main()
 		
 		fprintf(fp2, "\n");
 		for (int i = 0; i < processCount; i++) {
-			fprintf(fp2, "%s %s ", processes[i].name, processes[i].state);
+			fprintf(fp2, "%s %s%s ", processes[i].name, processes[i].state, (processes[i].new ? "*" : ""));
+			processes[i].new = false;
 		}
 
 		fprintf(fp2, "\n");
