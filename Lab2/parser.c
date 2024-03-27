@@ -31,7 +31,7 @@ int main()
 	int choice = 0;
 	float percent = 0;
 	int blockedCount;
-
+	
 	while (choice < 1) {
 		printf("% %%%%%%%Select Percentage of Processes in Blocked State%%%%%%%%\n");
 		printf("1: 80%, 2: 90%, 3: 100%\n");
@@ -50,8 +50,8 @@ int main()
 		}
 
 	}
-
-
+	
+	
 	printf("%d\n", choice);
 
 	FILE* fp1;
