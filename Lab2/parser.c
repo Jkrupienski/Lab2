@@ -30,7 +30,8 @@ int main()
 	char tokenizedLine[10][10];
 	int choice = 0;
 	float percent = 0;
-	int blockedCount;
+	double numSwap = 0;
+	int blockedCount = 0;
 	
 	while (choice < 1) {
 		printf("% %%%%%%%Select Percentage of Processes in Blocked State%%%%%%%%\n");
@@ -47,11 +48,24 @@ int main()
 		else if (choice == 3) {
 			percent = 1;
 		}
+	}
 
+	choice = 0;
+
+	while (choice < 1) {
+		printf("% %%%%%%%Select Number of Processes to be Swapped In at a time%%%%%%%%\n");
+		printf("1: 1, 2: 2\n");
+		scanf("%d", &choice);
+		printf("\n");
+
+		if (choice == 1) {
+			numSwap = 1;
+		}
+		else if (choice == 2) {
+			numSwap = 2;
+		}
 	}
 	
-	
-	printf("%d\n", choice);
 
 	FILE* fp1;
 	FILE* fp2;
@@ -232,6 +246,19 @@ int main()
 		for (int i = 0; i < processCount; i++) {
 			fprintf(fp2, "%s %s%s ", processes[i].name, processes[i].state, (processes[i].new ? "*" : ""));
 			processes[i].new = false;
+		}
+
+		blockedCount = 0;
+		for (int i = 0; i < processCount; i++) {
+			if (strcmp(processes[i].state, "Blocked") == 0) {
+				blockedCount++;
+			}
+		}
+
+		float blockedPercentage = (float)blockedCount / processCount;
+		if (blockedPercentage >= percent) {
+
+			// Swap out logic to do next ;(
 		}
 
 		fprintf(fp2, "\n");
