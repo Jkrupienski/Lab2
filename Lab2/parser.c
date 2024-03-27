@@ -38,7 +38,6 @@ int main()
 		scanf("%d", &choice);
 		printf("\n");
 
-
 		if (choice == 1) {
 			percent = .8;
 		}
