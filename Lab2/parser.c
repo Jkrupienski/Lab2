@@ -28,6 +28,31 @@ int main()
 	int lineP, lineQ;
 	char* sch;
 	char tokenizedLine[10][10];
+	int choice = 0;
+	float percent = 0;
+	int blockedCount;
+
+	while (choice < 1) {
+		printf("% %%%%%%%Select Percentage of Processes in Blocked State%%%%%%%%\n");
+		printf("1: 80%, 2: 90%, 3: 100%\n");
+		scanf("%d", &choice);
+		printf("\n");
+
+
+		if (choice == 1) {
+			percent = .8;
+		}
+		else if (choice == 2) {
+			percent = .9;
+		}
+		else if (choice == 3) {
+			percent = 1;
+		}
+
+	}
+
+
+	printf("%d\n", choice);
 
 	FILE* fp1;
 	FILE* fp2;
@@ -52,7 +77,7 @@ int main()
 		if (endPtr != NULL) {
 			*endPtr = '\0';
 		}
-		
+
 		char* pch = strtok(str, " ");
 		while (pch != NULL && processCount < 20) {
 			processes[processCount].name = strdup(pch);
@@ -74,16 +99,16 @@ int main()
 	while (fgets(str, sizeof(str), fp1) != NULL)
 	{
 		lineP = 0;
-		
-		
+
+
 		rch = strtok(str, ":;.");					// use strtok to break up the line by : or . or ; This would separate each line into the different events
 		while (rch != NULL)
 		{
 			strcpy(LineInFile[lineP], rch);			//copy the events into an array of strings
 			lineP++;								//keep track of how many events are in that line
 			rch = strtok(NULL, ":;.");				//needed for strtok to continue in the while loop
-		} 
-			
+		}
+
 		fprintf(fp2, "%s: ", LineInFile[0]); // Writes at time X to file
 		//printf("%s: \n", LineInFile[0]);	// at time debugging line
 		//for each event (e.g. Time slice for P7 expires) pull out process number and event
@@ -91,14 +116,14 @@ int main()
 		{
 			lineQ = 0;
 			sch = strtok(LineInFile[i], " ");
-			
+
 			while (sch != NULL)
 			{
 				strcpy(tokenizedLine[lineQ], sch);		//use strtok to break up each line into separate words and put the words in the array of strings
 				lineQ++;								//count number of valid elements
 				sch = strtok(NULL, " ");
 			}
-			
+
 			//tokenizedLine has the event separated by spaces (e.g. Time slice for P7 expires)
 			if (strcmp(tokenizedLine[1], "requests") == 0)						//Process requests an I/O device
 			{
@@ -131,7 +156,7 @@ int main()
 					strcpy(queues[2].request, tokenizedLine[0]);
 					//printf("%s\n", queues[2].request);
 				}
-				
+
 			}
 			else if ((strcmp(tokenizedLine[2], "dispatched") == 0))				//Process is dispatched
 			{
@@ -196,11 +221,14 @@ int main()
 			else																//Process has been terminated
 			{
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[2]);
+
+
+
 			}
-			
-			
+
+
 		}
-		
+
 		fprintf(fp2, "\n");
 		for (int i = 0; i < processCount; i++) {
 			fprintf(fp2, "%s %s%s ", processes[i].name, processes[i].state, (processes[i].new ? "*" : ""));
@@ -212,7 +240,7 @@ int main()
 		fprintf(fp2, "printer queue: %s\n", queues[1].request);
 		fprintf(fp2, "keyboard queue: %s\n", queues[2].request);
 		fprintf(fp2, "\n");
-		
+
 	}
 
 	printf("Parsing complete\n\n");
