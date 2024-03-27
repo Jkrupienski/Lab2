@@ -233,19 +233,26 @@ int main()
 			}
 			else																//Process has been terminated
 			{
+				for (int j = 0; j < processCount; j++) {
+					if (strcmp(processes[j].name, tokenizedLine[0]) == 0) {
+						processes[j].state = "Exit";
+						processes[j].new = true;
+						break;
+					}
+				}
+
+				int swappedIn = 0;
+				for (int j = 0; j < processCount && swappedIn < numSwap; j++) {
+					if (strcmp(processes[j].state, "Ready") == 0) {
+						processes[j].state = "Running";
+						swappedIn++;
+					}
+				}
+
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[2]);
-
-
-
 			}
 			
 			
-		}
-		
-		fprintf(fp2, "\n");
-		for (int i = 0; i < processCount; i++) {
-			fprintf(fp2, "%s %s%s ", processes[i].name, processes[i].state, (processes[i].new ? "*" : ""));
-			processes[i].new = false;
 		}
 
 		blockedCount = 0;
@@ -257,8 +264,19 @@ int main()
 
 		float blockedPercentage = (float)blockedCount / processCount;
 		if (blockedPercentage >= percent) {
+			int swappedOut = 0;
+			for (int i = 0; i < processCount && swappedOut < numSwap; i++) {
+				if (strcmp(processes[i].state, "Blocked") == 0) {
+					processes[i].state = "Ready";
+					swappedOut++;
+				}
+			}
+		}
 
-			// Swap out logic to do next ;(
+		fprintf(fp2, "\n");
+		for (int i = 0; i < processCount; i++) {
+			fprintf(fp2, "%s %s%s ", processes[i].name, processes[i].state, (processes[i].new ? "*" : ""));
+			processes[i].new = false;
 		}
 
 		fprintf(fp2, "\n");
