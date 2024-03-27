@@ -28,6 +28,31 @@ int main()
 	int lineP, lineQ;
 	char* sch;
 	char tokenizedLine[10][10];
+	int choice = 0;
+	float percent = 0;
+	int blockedCount;
+	
+	while (choice < 1) {
+		printf("% %%%%%%%Select Percentage of Processes in Blocked State%%%%%%%%\n");
+		printf("1: 80%, 2: 90%, 3: 100%\n");
+		scanf("%d", &choice);
+		printf("\n");
+
+
+		if (choice == 1) {
+			percent = .8;
+		}
+		else if (choice == 2) {
+			percent = .9;
+		}
+		else if (choice == 3) {
+			percent = 1;
+		}
+
+	}
+	
+	
+	printf("%d\n", choice);
 
 	FILE* fp1;
 	FILE* fp2;
@@ -196,6 +221,9 @@ int main()
 			else																//Process has been terminated
 			{
 				fprintf(fp2, "%s %s ", tokenizedLine[0], tokenizedLine[2]);
+
+
+
 			}
 			
 			
