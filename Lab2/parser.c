@@ -69,8 +69,10 @@ int main()
 
 	FILE* fp1;
 	FILE* fp2;
-	fp1 = fopen("inp1.txt", "r");			//open the original input file
-	fp2 = fopen("inp1_parsed.txt", "w");	//output the Process ID and event to another file. 
+	fp1 = fopen("testInput.txt", "r");			//open the original input file
+	fp2 = fopen("testInput_parsed.txt", "w");
+	//fp1 = fopen("inp1.txt", "r");			//open the original input file
+	//fp2 = fopen("inp1_parsed.txt", "w");	//output the Process ID and event to another file. 
 											//You can store in variables instead of printing to file
 
 	lineP = 0;
@@ -269,6 +271,8 @@ int main()
 				if (strcmp(processes[i].state, "Blocked") == 0) {
 					processes[i].state = "Ready";
 					swappedOut++;
+					printf("Process Swapped Out\n");
+					printf("%d\n", swappedOut);
 				}
 			}
 		}
@@ -284,7 +288,7 @@ int main()
 		fprintf(fp2, "printer queue: %s\n", queues[1].request);
 		fprintf(fp2, "keyboard queue: %s\n", queues[2].request);
 		fprintf(fp2, "\n");
-
+		printf("%f\n", blockedPercentage);
 	}
 
 	printf("Parsing complete\n\n");

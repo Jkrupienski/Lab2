@@ -25,49 +25,49 @@ printer queue:
 keyboard queue: P8
 
 At time 24: P7 requests printer P1 dispatched 
-P1 Running* P3 Blocked P5 Blocked P7 Blocked* P8 Blocked 
+P1 Running* P3 Ready P5 Blocked P7 Blocked* P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 28: P7 out 
-P1 Running P3 Blocked P5 Blocked P7 Ready* P8 Blocked 
+P1 Running P3 Ready P5 Blocked P7 Ready* P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 33: P5 interrupt 
-P1 Running P3 Blocked P5 Blocked P7 Ready P8 Blocked 
+P1 Running P3 Ready P5 Blocked P7 Ready P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 36: P3 interrupt 
-P1 Running P3 Blocked P5 Blocked P7 Ready P8 Blocked 
+P1 Running P3 Ready P5 Blocked P7 Ready P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 38: P1 terminated 
-P1 Running P3 Blocked P5 Blocked P7 Ready P8 Blocked 
+P1 Exit* P3 Running P5 Blocked P7 Ready P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 40: P7 interrupt 
-P1 Running P3 Blocked P5 Blocked P7 Ready P8 Blocked 
+P1 Exit P3 Running P5 Blocked P7 Ready P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 44: P7 in 
-P1 Running P3 Blocked P5 Blocked P7 Ready* P8 Blocked 
+P1 Exit P3 Running P5 Blocked P7 Ready* P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8
 
 At time 48: P8 interrupt 
-P1 Running P3 Blocked P5 Blocked P7 Ready P8 Blocked 
+P1 Exit P3 Running P5 Blocked P7 Ready P8 Blocked 
 disk queue: P5
 printer queue: P7
 keyboard queue: P8

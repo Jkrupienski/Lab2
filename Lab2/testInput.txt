@@ -1,0 +1,22 @@
+P1 Ready P2 Ready P3 Ready P4 Ready P5 Ready P6 Ready P7 Ready P8 Ready P9 Ready P10 Ready P11 Ready P12 Ready P13 Ready P14 Ready P15 Ready P16 Ready P17 Ready P18 Ready P19 Ready P20 Running end
+At time 5: P1 requests the disk.
+At time 10: P2 requests the printer.
+At time 15: P3 requests the keyboard.
+At time 20: P4 requests the disk.
+At time 25: P5 requests the printer.
+At time 30: P6 requests the keyboard.
+At time 35: P7 requests the disk.
+At time 40: P8 requests the printer.
+At time 45: P9 requests the keyboard.
+At time 50: P10 requests the disk.
+At time 55: P11 requests the printer.
+At time 60: P12 requests the keyboard.
+At time 65: P13 requests the disk.
+At time 70: P14 requests the printer.
+At time 75: P15 requests the keyboard.
+At time 80: P16 requests the disk.
+At time 85: P17 requests the printer.
+At time 90: P18 requests the keyboard.
+At time 95: P19 requests the disk.
+At time 100: P20 requests the printer.
+At time 105: P1 requests the keyboard.
